@@ -47,7 +47,7 @@ type :localhost, username, password
 
 
 and **Add query**
-![2](./img/1.png)
+![2](./img/2.png)
 
 
 Copy the contents of the SQL code file given by the teacher into this file
@@ -112,6 +112,6 @@ python ./app.py
 Enter 127.0.0.1:5000/ in the address box
 
 You can see this in your browser window
-![3](./img/1.png)  
+![3](./img/3.png)  
 
 
