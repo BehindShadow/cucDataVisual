@@ -59,11 +59,11 @@ and the you create the database successfully
 
 The core code in app.py
 ```py
-@app.route('/dbfirst')
-def dbfirst():
+@app.route('/d3art6')
+def d3art6():
     dbhost = "localhost"
     dbuser = "root"
-    dbpass = "**********"# 密码要写自己的这里就不展示了
+    dbpass = "*******" # 修改
     dbname = "dict"
     db=pymysql.connect(host=dbhost,user=dbuser,password=dbpass,database=dbname)
     sql = "SELECT * FROM `dict`.`map_enword` LIMIT 100;"
@@ -75,20 +75,25 @@ def dbfirst():
         # 获取所有记录列表
         results = cursor.fetchall()
         # print(results)
-        ans = ""
+        # ans = ""
+        # for i in results:
+        #     ans +="<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>"
+        #     print("<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>")
+        # return """<html ><head>
+   	    # <meta charset = 'utf-8'>
+        # </head>
+        # <body >""" +ans +"""</body></html>"""
+        seq = []
         for i in results:
-            ans +="<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>"
-            print("<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>")
-        return """<html ><head>
-   	    <meta charset = 'utf-8'>
-        </head>
-        <body >""" +ans +"""</body></html>"""
-
+            temp = str(i[1])+str(i[2])+str(i[3])
+            seq.append(temp)
+            # print(temp)
+        return render_template('d3art6.html',seq=seq)
     except:
         print ("Error: unable to fetch data")
     
     db.close()
-    return "hello"
+    return "helloword"
 # # 关闭数据库连接
 ```
 

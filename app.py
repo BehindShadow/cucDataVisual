@@ -76,7 +76,7 @@ def d3art6():
         print ("Error: unable to fetch data")
     
     db.close()
-    return "hello"
+    return "helloword"
 # # 关闭数据库连接
     
 
