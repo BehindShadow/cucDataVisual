@@ -98,14 +98,18 @@ def dbfirst():
 you can save the project to local by using **git clone**
 #### 2. Run
 cd to the corresponding folder
+
+Modify the program password part
+
 using this command
+
 ``` 
 python ./app.py
 ```
 
 #### 3. Open your Web browser
 
-Enter 127.0.0.1:5000/dbfirst in the address box
+Enter 127.0.0.1:5000/ in the address box
 
 You can see this in your browser window
 ![3](./img/1.png)  

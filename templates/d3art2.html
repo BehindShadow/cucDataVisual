@@ -1,0 +1,129 @@
+<html >
+    <head>
+   	<meta charset = 'utf-8'>
+       <style type="text/css">
+        h3 {text-align: right}
+        </style>
+    </head>
+<body >
+    <h2>结果展示</h2>
+    <h3>19计科赵润泽</h3>
+    <ul>
+        <a href="./d3art0" >d3直方图</a>
+        
+    </ul>
+    <ul>
+        <a href="./d3art1" >d3饼图</a>
+    </ul> 
+    <ul >
+        <a href="./d3art2" >d3饼图++</a>
+    </ul>
+    <ul >
+        <a href="./d3art3" >d3玫瑰图</a>
+    </ul>
+    <ul >
+        <a href="./d3art4" >d3力导向图</a>
+    </ul>
+    <ul >
+        <a href="./d3art5" >d3力导向图++</a>
+    </ul>
+    <ul >
+        <a href="./d3art6" >db</a>
+    </ul>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+	<script>
+        var w = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+        var h = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+        var width  =w*0.98;	//SVG绘制区域的宽度
+		var height =h*0.96;	//SVG绘制区域的高度		
+
+        var svg  = d3.select('body').append('svg').attr("width",w).attr("height",h);
+        
+        
+        // var dataset = [{ startAngle: 0 , endAngle: Math.PI * 0.3 },
+		// 				   { startAngle: Math.PI * 0.3 , endAngle: Math.PI },
+		// 				   { startAngle: Math.PI  , endAngle: Math.PI * 1.5 },
+		// 				   { startAngle: Math.PI * 1.5, endAngle: Math.PI * 2 }];
+        var dataset = [["Chrome",39.49],["IE",29.06],["QQ",4.84],["2345",4.28],["搜狗高速",4.19],["猎豹",2.24],["其他",15.91]];
+        // for(var i = 0 ;i < 7 ;i++){
+        //     dataset[i][1]=Math.random()*100+10;
+        // }
+
+        var pie = d3.pie()
+					.value(function(d){return d[1];});
+        
+        var arcPath = d3.arc()
+			.innerRadius(230)
+			.outerRadius(300);
+        
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        // var arcs=svg.selectAll("g")
+        //     .data(pie(dataset))
+        //     .enter()
+        //     .append("g")
+        //     //移到图表中心
+        //     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");//translate(a,b)a表示横坐标起点，b表示纵坐标起点
+
+        svg.selectAll("path")
+            .data(pie(dataset))
+            .enter()
+            .append("path")
+            .attr("d",function(d){ return arcPath(d); })
+            .attr("transform","translate("+width/2+","+height/2+")")
+            .attr("fill",function(d,i){ return color(i); })
+            .attr("stroke-width","2px");
+            // .attr("d",arc)//将角度转为弧度（d3使用弧度绘制
+
+            svg.selectAll("path")
+            .data(dataset)
+            // .attr("d",arc)//将角度转为弧度（d3使用弧度绘制
+			.on('mouseover',function(d,i){
+			    d3.select(this)
+				.attr("fill", d3.rgb(color(i)).brighter());	
+				svg.append("text")
+				   .attr("id","info")
+				   .attr("x",width/2)
+				   .attr("y",height/2-20)
+				   .attr("text-anchor","middle")
+				   .attr("font-size",36)
+				   .text(i+"%");
+				// svg.append("text")
+				//    .attr("id","value")
+				//    .attr("x",width/2)
+				//    .attr("y",height/2+25)
+				//    .attr("text-anchor","middle")
+				//    .attr("font-size",36)
+				//    .text(d.value+"%");
+			})
+			.on('mouseout',function(d,i){
+				d3.select(this)
+				.attr("fill",color(i));	
+				d3.select("#info")
+				.remove();
+				d3.select("#value")
+				.remove();
+			});
+            
+           
+
+
+            
+        svg.selectAll("text")
+			.data(pie(dataset))
+			.enter()
+			.append("text")
+			.attr("transform",function(d){
+				return "translate("+width/2+","+height/2+")" + 
+						"translate(" + arcPath.centroid(d) + ")";
+			})
+			.attr("text-anchor","middle")
+			.attr("fill","white")
+			.attr("font-size","18px")
+			.text(function(d){ return Math.floor(d.value); });
+			
+
+	</script>
+</body>
+</html>
+
