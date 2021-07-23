@@ -75,14 +75,6 @@ def d3art6():
         # 获取所有记录列表
         results = cursor.fetchall()
         # print(results)
-        # ans = ""
-        # for i in results:
-        #     ans +="<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>"
-        #     print("<p>"+str(i[1])+str(i[2])+str(i[3])+"</p>")
-        # return """<html ><head>
-   	    # <meta charset = 'utf-8'>
-        # </head>
-        # <body >""" +ans +"""</body></html>"""
         seq = []
         for i in results:
             temp = str(i[1])+str(i[2])+str(i[3])
