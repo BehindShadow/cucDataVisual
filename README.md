@@ -13,9 +13,9 @@ if you try to achieve this project, you should have
 - vscode 
 - you can get it easily by using the following commands
 ```
-apt-get update
-apt install Mysql-server
-apt install python
+sudo apt-get update
+sudo apt install Mysql-server -y
+sudo apt install python -y
 pip install PyMsql 
 pip install flask
 ```
