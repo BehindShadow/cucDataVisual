@@ -12,7 +12,7 @@ if you try to achieve this project, you should have
 - PyMysql
 - vscode 
 - you can get it easily by using the following commands
-```
+```bash
 sudo apt-get update
 sudo apt install Mysql-server -y
 sudo apt install python -y
@@ -26,7 +26,7 @@ pip install flask
 #### 1. create the database and table
 
 open the termianl and type the command:
-```
+```bash
 mysql -u root -p
 ```
 
@@ -100,7 +100,7 @@ Modify the program password part
 
 using this command
 
-``` 
+``` bash
 python ./app.py
 ```
 
